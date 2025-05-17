@@ -1,6 +1,6 @@
 VM1 Web Sunucusu Kurulumu (Ubuntu 24.04 LTS)
 
-1. Sanal Makine Hazırlığı
+## 1. Sanal Makine Hazırlığı
 
 VirtualBox üzerinden yeni bir sanal makine oluşturuldu.
 
@@ -25,5 +25,5 @@ Kurulum tamamlandıktan sonra sistem yeniden başlatıldı ve giriş yapıldı.
 3. Sistem Giriş ve Kontrol
 
 Giriş başarılı bir şekilde gerçekleştirildi:
-
+mehmet@mehmetvb1:~$
 ![image](https://github.com/user-attachments/assets/f17832a4-53fc-4c1f-9cb5-5dfb1e5687f1)
