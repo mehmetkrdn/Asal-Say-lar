@@ -7,7 +7,6 @@ VirtualBox üzerinden yeni bir sanal makine oluşturuldu.
 ISO olarak ubuntu-24.04-live-server-amd64.iso kullanıldı.
 
 Kurulum sırasında aşağıdaki bilgiler girildi:
-```bash
 Kullanıcı adı: mehmet
 Şifre: fener456 (örnek)
 Hostname: mehmetvb1
