@@ -251,4 +251,4 @@ sudo htpasswd -c /etc/apache2/.htpasswd ad.soyad
 
 Mehmet Kordon 
 mehmetkordon09@gmail.com
-
+github linki: https://github.com/mehmetkrdn/LinuxProje
