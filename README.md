@@ -97,14 +97,13 @@ sudo ufw enable ve sudo ufw status
 
 Bu adımla birlikte yalnızca belirlenen servislerin erişime açık olması sağlandı, diğer tüm portlar kapatıldı. Sistem açıldığında UFW otomatik olarak aktif olacaktır.
 
-# 9. Apache VirtualHost Yapılandırması ve Domain Eşlemesi (bugday.org, buğday.org, 2025ozgur.com)
+## 9. Apache VirtualHost Yapılandırması ve Domain Eşlemesi (bugday.org, buğday.org, 2025ozgur.com)
 Bu adımda Apache web sunucusunun birden fazla domaini yönetebilmesi içinyapılandırma yapıldı. bugday.org ve buğday.org aynı dizine yönlendirilirken, 2025ozgur.com ve www.2025ozgur.com farklı bir dizine yönlendirildi. İlk olarak gerekli dizinler oluşturuldu ve her dizine örnek bir HTML dosyası konuldu:
 ```bash
 sudo mkdir -p /var/www/bugday
 sudo mkdir -p /var/www/ozgur
 echo "<h1>Buğday Sayfası</h1>" | sudo tee/var/www/bugday/index.html
-echo "<h1>2025 Özgür Web Sitesi</h1>" | sudo tee
-/var/www/ozgur/index.html
+echo "<h1>2025 Özgür Web Sitesi</h1>" | sudo tee /var/www/ozgur/index.html
 Ardından iki adet sanal host yapılandırma dosyası oluşturuldu:
 /etc/apache2/sites-available/bugday.conf
 /etc/apache2/sites-available/ozgur.conf
@@ -122,5 +121,134 @@ C:\Windows\System32\drivers\etc\hosts dosyasına aşağıdaki satırlar eklendi:
 ```
 Sonuç olarak Apache üzerinde aynı anda birden fazla domain çalışacak şekilde VirtualHost yapısı başarıyla kurulmuş ve test edilmiştir.
 
+## 10. 🗄️Veritabanı Sunucusu (VM2) Kurulumu – MariaDB
+Bu bölümde, WordPressde giriş post yükleme gibi şeyler. için ayrı bir sanal makine üzerinde MariaDB veritabanı sunucusu kuruldu ve yapılandırıldı
 
+![image](https://github.com/user-attachments/assets/21bed3fc-c827-41d1-b547-b46ece55f0d9)
+
+## 10.1 VM2 Hazırlığı
+• VirtualBox üzerinden Ubuntu Server 24.04 ISO dosyası ile yeni bir sanal makine oluşturuldu.
+• Minimum kurulum yapıldı, ek yazılımlar (X sunucusu gibi) yüklenmedi.
+• Hostname olarak database belirlendi.
+• mehmet adında kullanıcı oluşturuldu.
+
+## 10.2 Ağ Ayarları
+• VirtualBox → Ayarlar → Ağ:
+o "Adaptör Etkinleştirildi"
+o Bağlı: Bridged Adapter (veya NAT)
+• VM2 açıldıktan sonra ip a komutu ile IP adresi alındığı doğrulandı.
+Son durumda IP adresi: 192.168.1.38
+
+## 10.3 MariaDB Kurulumu
+```bash
+sudo apt update
+sudo apt install mariadb-server -y
+• Servis başlatıldı ve otomatik başlatılması sağlandı:
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+```
+Güvenlik yapılandırmasıyla gereksiz kullanıcılar ve test veritabanı kaldırıldı, root erişimi
+sınırlandı.
+
+## 10.4 WordPress İçin Veritabanı ve Kullanıcı Oluşturma
+Wordpress sayfasına giriş ve post oluşturmak için. mariadbye giriş yapıldı:
+```bash
+sudo mysql
+CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8mb4 COLLATE
+utf8mb4_unicode_ci; CREATE USER 'wpuser'@'%' IDENTIFIED BY 'sifre'; GRANT ALL
+PRIVILEGES ON wordpress.* TO 'wpuser'@'%'; FLUSH PRIVILEGES; EXIT;
+VM1'den ping 192.168.1.38 komutu ile bağlantı kontrol edildi.
+```
+WordPress sunucusu, bu IP üzerinden veritabanı sunucusuna erişebilir hale geldi.
+## ✅Sonuç
+• Veritabanı sunucusu kuruldu ve yapılandırıldı.
+• WordPress, farklı bir sanal makinede çalışan MariaDB sunucusuna başarıyla
+bağlandı.
+• Ayrı makine kullanımı sayesinde sistem mimarisi ayrıştırıldı ve daha güvenli hale
+getirildi.
+
+## 11.1 WordPress Admin Paneline Giriş
+• http://bugday.org/wp-admin/ veya http://192.168.1.37/wp-admin/üzerinden admin paneline giriş yapıldı.
+• Yönetici kullanıcı adı ve şifre ile başarılı giriş sağlandı.
+• Admin arayüzü Türkçe olarak görüntülendi.
+![image](https://github.com/user-attachments/assets/fecedb51-ee14-42f0-b36c-da22b648873f)
+
+## 11.2 Yeni Yazı Oluşturuldu
+• Sol menüden Yazılar → Yeni Ekle menüsü açıldı.
+• Başlık olarak: Benim Yeni Yazım yazıldı.
+• İçerik kısmına açıklayıcı örnek bir paragraf eklendi.
+• Yazı, sağ üstteki Yayınla butonuna tıklanarak yayınlandı.
+## 11.3. Yazıya Dosya Yüklendi
+• Yazı düzenleme ekranında + butonu ile "Dosya" bloğu eklendi.
+• Bilgisayardan örnek bir .png veya .pdf dosyası yüklendi.
+• Dosya, yazı içinde görünür hale getirildi ve yazı tekrar güncellendi.
+
+## 11.4 SEO Uyumlu Kalıcı Bağlantı Ayarı Yapıldı
+• Sol menüden: Ayarlar → Kalıcı Bağlantılar menüsüne girildi.
+• "Yazı ismi" seçeneği işaretlendi.
+• Sayfanın alt kısmından "Değişiklikleri Kaydet" butonuna tıklandı.
+ Artık yayınlanan yazı aşağıdaki gibi SEO dostu bir URL ile erişilebilir durumdadır
+ 
+ ![image](https://github.com/user-attachments/assets/2bfb7160-5422-4546-bd6c-fcdbfea170ad)
+ 
+ Wordpress sayfamamız da yeni bir post yayınlayıp bir dosya yükledik.
+
+## 12. 2025ozgur.com Ana Sayfası – 100 satırlık bildirim 
+Bu adımda, 2025ozgur.com adresinde 100 satır boyunca "Kullanıcılarımın kişisel verilerini toplamayacağım." cümlesini içeren basit bir HTML sayfası oluşturulmuştur.
+## 12.1 Web Dizin Yapısı Oluşturuldu
+100 defa bildiri içeriğini yazdırdım döngüyle
+```bash
+sudo mkdir -p /var/www/ozgur
+for i in {1..100}; do echo "Kullanıcılarımın kişisel verilerini toplamayacağım." | sudo tee -
+a /var/www/ozgur/index.html > /dev/null; done
+```
+![image](https://github.com/user-attachments/assets/33dffd19-329b-4962-8077-4492a158228a)
+
+## 12.2 Apache Yapılandırması
+ozgur.conf dosyasında 2025ozgur.com ve www.2025ozgur.com domainlerinin Apache tarafından tanınması sağlandı. Bu yapılandırma, gelen HTTP isteklerinin doğru
+dizine (DocumentRoot) yönlendirilmesi ve her domainin kendi içeriğini sunabilmesi için zorunludur.
+```bash
+<VirtualHost *:80>
+ ServerName 2025ozgur.com
+ ServerAlias www.2025ozgur.com
+ DocumentRoot /var/www/ozgur
+ <Directory /var/www/ozgur>
+ Options Indexes FollowSymLinks
+ AllowOverride All
+ Require all granted
+ </Directory>
+</VirtualHost>
+```
+Bu yönlendirme ile hem 2025ozgur.com hem www.2025ozgur.com a aynı anda erişim
+oldu.
+
+# 13 Parola Korumalı Yönetim Sayfası –2025ozgur.com/yonetim
+Bu adımda, 2025ozgur.com/yonetim dizini parola korumasına alınmış ve içerisine basit bir HTML dosyası yerleştirilmiştir.
+## 13.1 Dizin Oluşturuldu
+Apache dizin yapısına uygun olarak yeni bir dizin oluşturuldu:
+```bash
+sudo mkdir -p /var/www/ozgur/yonetim
+```
+## 13.2 Parola Dosyası Oluşturuldu
+```bash
+sudo apt install apache2-utils -y
+sudo htpasswd -c /etc/apache2/.htpasswd ad.soyad
+```
+## 13.3 Apache Yapılandırmasına Basic Giriş Eklendi
+```bash
+<Directory "/var/www/ozgur/yonetim">
+ AuthType Basic
+ AuthName "Yetkili Giriş"
+ AuthUserFile /etc/apache2/.htpasswd
+ Require valid-user
+</Directory>
+```
+## 13.4 HTML Dosyası Oluşturuldu
+/var/www/ozgur/yonetim/index.html dosyası oluşturuldu ve içerik eklendi
+
+![image](https://github.com/user-attachments/assets/b7158533-e7e1-44e3-ba76-016280b0166c)
+
+
+Mehmet Kordon 
+mehmetkordon09@gmail.com
 
