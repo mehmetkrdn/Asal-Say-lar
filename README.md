@@ -69,6 +69,32 @@ chmod 600 ~/.ssh/authorized_keys
 ```
 ![image](https://github.com/user-attachments/assets/c9afdd42-874c-4346-b373-6cb1ac4be2d7)
 
-
+## SSH Servisini Yeniden Başlatma Sırasında KarşılaşılanSorun ve Çözüm
+SSH yapılandırmasında yapılan değişikliklerin etkin olabilmesi için servis yeniden başlatılmak istendiğinde aşağıdaki hata alınmıştır:
+```bash
+sudo systemctl restart ssh
+Yüklü olmadığı için kuruldu ve çözüm giderildi.
+sudo apt install openssh-server
+```
+## 8. UFW Güvenlik Duvarı Yapılandırması
+Sistemde sadece gerekli portların açık olması ve gereksiz tümbağlantıların engellenmesi amacıyla UFW (Uncomplicated Firewall)yapılandırıldı.
+## 8.1. UFW kurulumu yapıldı:
+```bash
+sudo apt update
+sudo apt install ufw –y
+```
+## 8.2. Gerekli portlara izin verildi:
+```bash
+sudo ufw allow OpenSSH # SSH bağlantısı için (port 22)
+sudo ufw allow 80 # HTTP (Apache için)
+sudo ufw allow 443 # HTTPS (SSL desteği için)
+```
+## 8.3. Güvenlik duvarı aktif edilip son durum kontrol edildi:
+```bash
+sudo ufw enable ve sudo ufw status
+```
+![image](https://github.com/user-attachments/assets/00a201fb-d79c-483b-ac1e-5c1cd19c09fb)
+Bu adımla birlikte yalnızca belirlenen servislerin erişime açık olması sağlandı, diğer tüm
+portlar kapatıldı. Sistem açıldığında UFW otomatik olarak aktif olacaktır.
 
 
