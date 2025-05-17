@@ -94,7 +94,7 @@ sudo ufw allow 443 # HTTPS (SSL desteği için)
 sudo ufw enable ve sudo ufw status
 ```
 ![image](https://github.com/user-attachments/assets/00a201fb-d79c-483b-ac1e-5c1cd19c09fb)
-Bu adımla birlikte yalnızca belirlenen servislerin erişime açık olması sağlandı, diğer tüm
-portlar kapatıldı. Sistem açıldığında UFW otomatik olarak aktif olacaktır.
+
+Bu adımla birlikte yalnızca belirlenen servislerin erişime açık olması sağlandı, diğer tüm portlar kapatıldı. Sistem açıldığında UFW otomatik olarak aktif olacaktır.
 
 
