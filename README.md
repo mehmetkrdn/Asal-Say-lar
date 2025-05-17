@@ -36,4 +36,20 @@ sudo apt update
 sudo apt install apache2 php php-mysql libapache2-mod-php unzip wget -y
 ```
 ## 5. Apache Sunucusunun Doğrulanması
+Kurulum sonrası Apache’nin doğru şekilde çalıştığını test etmek için sanal makinenin IP adresi öğrenildi:
+```bash
+-ip a
+```
+![image](https://github.com/user-attachments/assets/1c01259d-6b49-4ccd-945c-0d0b2c106ea8)
+
+Çıkan sonuçta ip adresi 192.168.1.23 şeklindeydi. Bu ip’ye ana bilgisayardan girince ise bu sonucu verdi. (Sanal makine ile aynı ortamda çalışması için ağ ayarını Köprü Bağdaştırıcısı yaptık)
+
+![image](https://github.com/user-attachments/assets/c4ace834-f165-4aee-b6fa-abf5ea6ff724)
+
+Sonuç olarak Apache’nin "It works!" yazan varsayılan karşılama sayfası başarıylagörüntülendi. Bu, web sunucusunun dışarıdan doğru çalıştığını ve gelen HTTP
+isteklerine yanıt verdiğini doğrulamaktadır.
+
+
+
+
 
