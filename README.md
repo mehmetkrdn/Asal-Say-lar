@@ -50,6 +50,11 @@ Sonuç olarak Apache’nin "It works!" yazan varsayılan karşılama sayfası ba
 isteklerine yanıt verdiğini doğrulamaktadır.
 
 
+## 6.SSH Anahtarlı Giriş Yapılandırması (Parola Girişi Kapatılarak)
+Sunucunun güvenliğini artırmak amacıyla, yalnızca SSH anahtarı ile bağlantı kabuledecek şekilde yapılandırma yapılmıştır. Parola ile giriş devre dışı bırakılmıştır.
+Ana Makinede SSH Anahtar Üretimi
+Ana makinede terminal (PowerShell) açılarak aşağıdaki komut çalıştırıldı:
+![image](https://github.com/user-attachments/assets/c6bbbd73-e01f-4cf3-a045-f826cddb98bf)
 
 
 
