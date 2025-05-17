@@ -56,5 +56,19 @@ Ana Makinede SSH Anahtar Üretimi
 Ana makinede terminal (PowerShell) açılarak aşağıdaki komut çalıştırıldı:
 ![image](https://github.com/user-attachments/assets/c6bbbd73-e01f-4cf3-a045-f826cddb98bf)
 
+## 7. 2. Public Key’in Sanal Makineye Eklenmesi
+Sanal makinede .ssh dizini oluşturularak yetkiler ayarlandı:
+'''bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+Ana makinede oluşturulan id_rsa.pub içeriği, VM içerisinde
+authorized_keys dosyasına manuel olarak kopyalanarak eklendi:
+nano ~/.ssh/authorized_keys
+Kopyalanan public key bu dosyaya tek satır olarak eklendi.
+chmod 600 ~/.ssh/authorized_keys
+'''
+![image](https://github.com/user-attachments/assets/c9afdd42-874c-4346-b373-6cb1ac4be2d7)
+
+
 
 
