@@ -2,25 +2,28 @@ VM1 Web Sunucusu Kurulumu (Ubuntu 24.04 LTS)
 
 1. Sanal Makine Hazırlığı
 
-VirtualBox ile yeni bir sanal makine oluşturuldu.
+VirtualBox üzerinden yeni bir sanal makine oluşturuldu.
 
-ISO: ubuntu-24.04-live-server-amd64.iso
+ISO olarak ubuntu-24.04-live-server-amd64.iso kullanıldı.
 
-Kurulum bilgileri:
+Kurulum sırasında aşağıdaki bilgiler girildi:
 
 Kullanıcı adı: mehmet
 
-Şifre: fener456
+Şifre: fener456 (örnek)
 
 Hostname: mehmetvb1
 
-2. Ubuntu Server Kurulumu
+2. Ubuntu Server 24.04 Kurulumu
 
-"Try or Install Ubuntu Server" ile başlatıldı.
+“Try or Install Ubuntu Server” ekranından kurulum başlatıldı.
 
-Minimal kurulum yapıldı.
+Minimal kurulum tercih edildi.
 
-Sistem yeniden başlatıldı.
+Kurulum tamamlandıktan sonra sistem yeniden başlatıldı ve giriş yapıldı.
 
 3. Sistem Giriş ve Kontrol
- mehmet@mehmetvb1:~$
+
+Giriş başarılı bir şekilde gerçekleştirildi:
+
+![image](https://github.com/user-attachments/assets/f17832a4-53fc-4c1f-9cb5-5dfb1e5687f1)
