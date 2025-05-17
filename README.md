@@ -33,5 +33,6 @@ mehmet@mehmetvb1:~$
 ## 4. Apache ve PHP Kurulumu
 
 Web sayfalarını sunmak ve dinamik PHP içerikleri çalıştırmak için Apache ve PHP kurulumu yapıldı:
+```bash
 sudo apt update
 sudo apt install apache2 php php-mysql libapache2-mod-php unzip wget -y
