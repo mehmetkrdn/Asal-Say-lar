@@ -23,11 +23,4 @@ Minimal kurulum yapıldı.
 Sistem yeniden başlatıldı.
 
 3. Sistem Giriş ve Kontrol
-
-mehmet@mehmetvb1:~$
-
-4. Apache ve PHP Kurulumu
-
-sudo apt update
-sudo apt install apache2 php php-mysql libapache2-mod-php unzip wget -y
-
+ mehmet@mehmetvb1:~$
