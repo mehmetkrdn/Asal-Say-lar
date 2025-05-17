@@ -97,4 +97,30 @@ sudo ufw enable ve sudo ufw status
 
 Bu adımla birlikte yalnızca belirlenen servislerin erişime açık olması sağlandı, diğer tüm portlar kapatıldı. Sistem açıldığında UFW otomatik olarak aktif olacaktır.
 
+# 9. Apache VirtualHost Yapılandırması ve Domain Eşlemesi (bugday.org, buğday.org, 2025ozgur.com)
+Bu adımda Apache web sunucusunun birden fazla domaini yönetebilmesi içinyapılandırma yapıldı. bugday.org ve buğday.org aynı dizine yönlendirilirken, 2025ozgur.com ve www.2025ozgur.com farklı bir dizine yönlendirildi. İlk olarak gerekli dizinler oluşturuldu ve her dizine örnek bir HTML dosyası konuldu:
+```bash
+sudo mkdir -p /var/www/bugday
+sudo mkdir -p /var/www/ozgur
+echo "<h1>Buğday Sayfası</h1>" | sudo tee/var/www/bugday/index.html
+echo "<h1>2025 Özgür Web Sitesi</h1>" | sudo tee
+/var/www/ozgur/index.html
+Ardından iki adet sanal host yapılandırma dosyası oluşturuldu:
+/etc/apache2/sites-available/bugday.conf
+/etc/apache2/sites-available/ozgur.conf
+Bu dosyalar etkinleştirildi ve Apache yeniden yüklendi:
+sudo a2ensite bugday.conf
+sudo a2ensite ozgur.conf
+sudo systemctl reload apache2
+sudo apache2ctl configtest (hata var mı yok mu diye kontrol ettim)
+Windows tarafında domain–IP eşlemesi yapılabilmesi için
+C:\Windows\System32\drivers\etc\hosts dosyasına aşağıdaki satırlar eklendi:
+192.168.1.37 bugday.org
+192.168.1.37 buğday.org
+192.168.1.37 2025ozgur.com
+192.168.1.37 www.2025ozgur.com
+```
+Sonuç olarak Apache üzerinde aynı anda birden fazla domain çalışacak şekilde VirtualHost yapısı başarıyla kurulmuş ve test edilmiştir.
+
+
 
