@@ -14,6 +14,9 @@ Kullanıcı adı: mehmet
 
 Hostname: mehmetvb1
 
+![image](https://github.com/user-attachments/assets/f17832a4-53fc-4c1f-9cb5-5dfb1e5687f1)
+
+
 ## 2. Ubuntu Server 24.04 Kurulumu
 
 “Try or Install Ubuntu Server” ekranından kurulum başlatıldı.
@@ -27,4 +30,3 @@ Kurulum tamamlandıktan sonra sistem yeniden başlatıldı ve giriş yapıldı.
 Giriş başarılı bir şekilde gerçekleştirildi:
 mehmet@mehmetvb1:~$
 
-![image](https://github.com/user-attachments/assets/f17832a4-53fc-4c1f-9cb5-5dfb1e5687f1)
